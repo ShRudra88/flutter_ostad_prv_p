@@ -28,37 +28,83 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title:  Text("Homepage"),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.black12,
       ),
-      backgroundColor: Colors.indigoAccent,
-      body: Container(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text("Alert Dialog Box"),
-                  content: Text("You have raised a Alert Dialog Box"),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Container(
-                        color: Colors.green,
-                        padding: EdgeInsets.all(14),
-                        child: Text("okay", style: TextStyle(color: Colors.yellowAccent),),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            child: Text("Alert Dialog"),
-          ),
-           ),
+      backgroundColor: Colors.pinkAccent,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Your action here
+              },
+              child: Text('Elevated Button'),
+            ),
+            SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                // Your action here
+              },
+              child: Text('Text Button'),
+            ),
+            SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: () {
+                // Your action here
+              },
+              child: Text('Outlined Button'),
+            ),
+            SizedBox(height: 20),
+            IconButton(
+              onPressed: () {
+                // Your action here
+              },
+              icon: Icon(Icons.add),
+            ),
+            SizedBox(height: 20),
+            FloatingActionButton(
+              onPressed: () {
+              },
+              child: Icon(Icons.add),
+              backgroundColor: Colors.black12,
+            )
+            /* DropdownButton<String>(
+              items: <String>['Option 1', 'Option 2', 'Option 3']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              onChanged: (String newValue) {
+                // Handle dropdown selection
+              },
+            )
+
+            Radio(
+              value: selectedValue,
+              groupValue: groupValue,
+              onChanged: (value) {
+                setState(() {
+                  groupValue = value;
+                });
+              },
+            )
+
+            Switch(
+              value: isSwitched,
+              onChanged: (value) {
+                setState(() {
+                  isSwitched = value;
+                });
+              },
+            )
+            */
+
+          ],
         ),
+      )
       );
   }
 }
