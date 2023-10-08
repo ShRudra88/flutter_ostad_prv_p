@@ -1,66 +1,64 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: HomePage(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home'),
+        title:  Text("Homepage"),
+        backgroundColor: Colors.green,
       ),
-      body: Column(
-        children: [
-          Padding(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'First Name'),
-              )),
-          Padding(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Last Name'),
-              )),
-          Padding(
-              padding: EdgeInsets.all(20),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(), labelText: 'Email Address'),
-              )),
-          Padding(
-            padding: EdgeInsets.all(20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.black,
-                shadowColor: Colors.red,
-              ),
-              onPressed: () {},
-              child: Text('Submit',
-                style: TextStyle(fontSize: 100, color: Colors.indigo),
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+      backgroundColor: Colors.indigoAccent,
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text("Alert Dialog Box"),
+                  content: Text("You have raised a Alert Dialog Box"),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Container(
+                        color: Colors.green,
+                        padding: EdgeInsets.all(14),
+                        child: Text("okay", style: TextStyle(color: Colors.yellowAccent),),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+            child: Text("Alert Dialog"),
+          ),
+           ),
+        ),
+      );
   }
 }
