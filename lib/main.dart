@@ -24,7 +24,7 @@ class _GestureDetectorDemoState extends State<GestureDetectorDemo> {
 
   void _toggleColor() {
     setState(() {
-      _containerColor = _isBlue ? Colors.green : Colors.blue;
+      _containerColor = _isBlue ? Colors.green : Colors.blue;//color changed
       _isBlue = !_isBlue;
     });
   }
