@@ -1,110 +1,44 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    return MaterialApp(
+      home: MyGridView(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class MyGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title:  Text("Homepage"),
-        backgroundColor: Colors.black12,
+        title: Text('GridView Example'),
       ),
-      backgroundColor: Colors.pinkAccent,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                // Your action here
-              },
-              child: Text('Elevated Button'),
-            ),
-            SizedBox(height: 20),
-            TextButton(
-              onPressed: () {
-                // Your action here
-              },
-              child: Text('Text Button'),
-            ),
-            SizedBox(height: 20),
-            OutlinedButton(
-              onPressed: () {
-                // Your action here
-              },
-              child: Text('Outlined Button'),
-            ),
-            SizedBox(height: 20),
-            IconButton(
-              onPressed: () {
-                // Your action here
-              },
-              icon: Icon(Icons.add),
-            ),
-            SizedBox(height: 20),
-            FloatingActionButton(
-              onPressed: () {
-              },
-              child: Icon(Icons.add),
-              backgroundColor: Colors.black12,
-            )
-            /* DropdownButton<String>(
-              items: <String>['Option 1', 'Option 2', 'Option 3']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String newValue) {
-                // Handle dropdown selection
-              },
-            )
-
-            Radio(
-              value: selectedValue,
-              groupValue: groupValue,
-              onChanged: (value) {
-                setState(() {
-                  groupValue = value;
-                });
-              },
-            )
-
-            Switch(
-              value: isSwitched,
-              onChanged: (value) {
-                setState(() {
-                  isSwitched = value;
-                });
-              },
-            )
-            */
-
-          ],
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4, // Number of columns
+          crossAxisSpacing: 20.0, // Spacing between columns
+          mainAxisSpacing: 10.0, // Spacing between rows
         ),
-      )
-      );
+        itemCount: 30, // Number of grid items
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            color: Colors.primaries[index % Colors.primaries.length],
+            child: Center(
+              child: Text(
+                'Item $index',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
