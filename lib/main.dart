@@ -8,49 +8,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ButtonDemo(),
+      home: TabBarDemo(),
     );
   }
 }
 
-class ButtonDemo extends StatelessWidget {
+class TabBarDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Button Demo'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return DefaultTabController(
+      length: 2, // Number of tabs
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Tab Bar Example'),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: 'Tab 1'),
+              Tab(text: 'Tab 2'),
+            ],
+          ),
+        ),
+        body: TabBarView(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                // Add action for ElevatedButton
-              },
-              child: Text('ElevatedButton'),
-            ),
-            SizedBox(height: 20),
-            TextButton(
-              onPressed: () {
-                // Add action for TextButton
-              },
-              child: Text('TextButton'),
-            ),
-            SizedBox(height: 20),
-            OutlinedButton(
-              onPressed: () {
-                // Add action for OutlinedButton
-              },
-              child: Text('OutlinedButton'),
-            ),
-            SizedBox(height: 20),
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                // Add action for IconButton
-              },
-            ),
+            // Fragment for Tab 1
+            Center(child: Text('Tab 1 Content')),
+
+            // Fragment for Tab 2
+            Center(child: Text('Tab 2 Content')),
           ],
         ),
       ),
