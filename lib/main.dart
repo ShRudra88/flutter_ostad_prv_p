@@ -8,36 +8,48 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MyGridView(),
+      home: GestureDetectorDemo(),
     );
   }
 }
 
-class MyGridView extends StatelessWidget {
+class GestureDetectorDemo extends StatefulWidget {
+  @override
+  _GestureDetectorDemoState createState() => _GestureDetectorDemoState();
+}
+
+class _GestureDetectorDemoState extends State<GestureDetectorDemo> {
+  Color _containerColor = Colors.blue;
+  bool _isBlue = true;
+
+  void _toggleColor() {
+    setState(() {
+      _containerColor = _isBlue ? Colors.green : Colors.blue;
+      _isBlue = !_isBlue;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GridView Example'),
+        title: Text('GestureDetector Example'),
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4, // Number of columns
-          crossAxisSpacing: 20.0, // Spacing between columns
-          mainAxisSpacing: 10.0, // Spacing between rows
-        ),
-        itemCount: 30, // Number of grid items
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            color: Colors.primaries[index % Colors.primaries.length],
+      body: Center(
+        child: GestureDetector(
+          onTap: _toggleColor, // Call _toggleColor() when tapped
+          child: Container(
+            width: 200.0,
+            height: 200.0,
+            color: _containerColor, // Toggle between blue and green
             child: Center(
               child: Text(
-                'Item $index',
+                'Tap Me',
                 style: TextStyle(color: Colors.white),
               ),
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
