@@ -8,47 +8,50 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: GestureDetectorDemo(),
+      home: ButtonDemo(),
     );
   }
 }
 
-class GestureDetectorDemo extends StatefulWidget {
-  @override
-  _GestureDetectorDemoState createState() => _GestureDetectorDemoState();
-}
-
-class _GestureDetectorDemoState extends State<GestureDetectorDemo> {
-  Color _containerColor = Colors.blue;
-  bool _isBlue = true;
-
-  void _toggleColor() {
-    setState(() {
-      _containerColor = _isBlue ? Colors.green : Colors.blue;
-      _isBlue = !_isBlue;
-    });
-  }
-
+class ButtonDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('GestureDetector Example'),
+        title: Text('Button Demo'),
       ),
       body: Center(
-        child: GestureDetector(
-          onTap: _toggleColor, // Call _toggleColor() when tapped
-          child: Container(
-            width: 200.0,
-            height: 200.0,
-            color: _containerColor, // Toggle between blue and green
-            child: Center(
-              child: Text(
-                'Tap Me',
-                style: TextStyle(color: Colors.white),
-              ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // Add action for ElevatedButton
+              },
+              child: Text('ElevatedButton'),
             ),
-          ),
+            SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                // Add action for TextButton
+              },
+              child: Text('TextButton'),
+            ),
+            SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: () {
+                // Add action for OutlinedButton
+              },
+              child: Text('OutlinedButton'),
+            ),
+            SizedBox(height: 20),
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                // Add action for IconButton
+              },
+            ),
+          ],
         ),
       ),
     );
